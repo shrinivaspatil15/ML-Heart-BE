@@ -19,24 +19,41 @@ def show_predict_page():
         Resting_blood_pressure = st.text_input("Enter your Resting Blood Pressure (in mmHG)")
         Serum_cholestrol = st.text_input("Enter your Serum Cholestrol (in mg/dl)")
 
-        option = st.selectbox(
-            'Is your Fasting Blood Sugar > 120mg/dl?',
-                ('Yes', 'No'))
+        fbsOP = {
+            "No",
+            "Yes"
+        }
 
-        option = st.selectbox(
-            'Resting ECG results?',
-                ('Normal', 'ST-T wave abnormality', 'Definite left ventricular hypertrophy'))
+        ecgOP = {
+            "Normal",
+            "ST-T wave abnormality",
+            "Definite left ventricular hypertrophy"
+
+        }
+
+        cpOP = {
+            "No",
+            "Yes"
+        }
+
+        cptOP = {
+            "No Chest Pain",
+            "Typical Angina(Physical or Emotional Stress)",
+            "Atypical Angina(Not severe but discomfort in chest)",
+            "Non-Anginal chest pain",
+            "Asymptomatic(None of the above apply"
+        }
+        
+        fbs = st.selectbox("Is your Fasting Blood Sugar > 120mg/dl?",fbsOP)
+
+        ecg = st.selectbox("Resting ECG results?",ecgOP)
         
         Heart_rate = st.text_input("Maximum Heart Rate Achieved during ECG")
         
-        option = st.selectbox(
-            'Chest Pain during Exercise?',
-                ('Yes', 'No'))
+        cp = st.selectbox("Chest Pain during Exercise?",cpOP)
 
-        option = st.selectbox(
-            'Select the Chest Pain Type?',
-                ('No Chest Pain', 'Typical Angina(Physical or Emotional Stress)','Atypical Angina(Not severe but discomfort in chest)', 'Non-Anginal chest pain', 'Asymptomatic(None of the above apply'))
+        cpt = st.selectbox("Select the Chest Pain Type?",cptOP)
 
-        submit = st.form_submit_button("Submit")
+        predict = st.form_submit_button("Predict")
        
 
