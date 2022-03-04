@@ -4,6 +4,8 @@ import numpy as np
 import pickle
 
 def show_predict_page():
+    
+    
     st.title("Cardiovascular disease prediction using Machine Learning")
 
     st.write("""### For prediction, we need this data to be filled ###""")
@@ -14,14 +16,12 @@ def show_predict_page():
     }
 
     
-
-    # st.write('You selected:', sex)
-    
     
     fbsOP = {
         "No",
         "Yes"
     }
+
 
     ecgOP = {
         "Normal",
@@ -125,20 +125,6 @@ def show_predict_page():
         elif thal=="Reversible defect (a blood flow is observed but it is not normal)":
             thal = 3
 
-        st.write("Age : {}".format(age))
-        st.write("Sex : {}".format(sex))
-        st.write("CP : {}".format(cp))
-        st.write("Resting BP : {}".format(trestbps))
-        st.write("Cholestrol : {}".format(chol))
-        st.write("Fasting Blood Sugar : {}".format(fbs))
-        st.write("Resting ECG : {}".format(restecg))
-        st.write("Thalach : {}".format(thalach))
-        st.write("Exercise Induced Angina : {}".format(exang))
-        st.write("Old Peak : {}".format(oldpeak))
-        st.write("Slope : {}".format(slope))
-        st.write("Number of major vessel : {}".format(ca))
-        st.write("Thal : {}".format(thal))
-
         userdata = np.array([[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]])
 
         with open('savedModel.pkl', 'rb') as modelFile:
@@ -148,10 +134,9 @@ def show_predict_page():
         prediction = classifier.predict(userdata)
 
         if prediction[0]==1:
-            st.write("""###Heart Disease Detected###""")
+            st.error("""### Heart Disease Detected ###""")
         else:
-            st.write("""###Heart Disease Not Detected###""")
-        st.write(prediction[0])
+            st.success("""### Heart Disease Not Detected ###""")
 
         
 
